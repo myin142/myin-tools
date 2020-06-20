@@ -3,10 +3,18 @@
   "name": "aws-cdk",
   "version": "0.0.1",
   "schematics": {
-    "aws-cdk": {
-      "factory": "./src/schematics/aws-cdk/schematic",
-      "schema": "./src/schematics/aws-cdk/schema.json",
-      "description": "aws-cdk schematic"
+    "init": {
+      "factory": "./src/schematics/init/init",
+      "schema": "./src/schematics/init/schema.json",
+      "description": "Initialize plugin",
+      "aliases": ["ng-add"],
+      "hidden": true
+    },
+    "application": {
+      "factory": "./src/schematics/application/application",
+      "schema": "./src/schematics/application/schema.json",
+      "aliases": ["app"],
+      "description": "Create CDK Application"
     }
   }
 }

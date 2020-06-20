@@ -2,6 +2,7 @@
   "name": "nx-plug",
   "version": "0.0.0",
   "license": "MIT",
+  "description": "Nx Plugin for AWS CDK",
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
@@ -25,8 +26,11 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help"
   },
-  "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@angular-devkit/schematics": "^9.1.9",
+    "@aws-cdk/core": "^1.46.0",
+    "aws-cdk": "^1.46.0"
+  },
   "devDependencies": {
     "@nrwl/nx-plugin": "9.4.5",
     "@nrwl/workspace": "9.4.5",
