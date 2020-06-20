@@ -19,5 +19,8 @@ This project was generated using [Nx](https://nx.dev).
 
 ## Builders
 
-- [ ] Deploy:
-  - `nx deploy <project-name>`
+- [x] Deploy/Destroy:
+  - `nx deploy <project-name>` or `nx destroy <project-name>`
+  - Deploy/Destroy specific stack: `nx deploy <project-name> --args="--stack=<stack-name>"`
+  - WARNING: It will not ask for any confirmations. Use at your own risk.
+  - Only works on linux

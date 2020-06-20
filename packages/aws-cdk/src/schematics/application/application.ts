@@ -70,17 +70,38 @@ export default function (options: ApplicationSchema): Rule {
     return chain([
         init(options),
         updateWorkspace((workspace) => {
-            workspace.projects
+            const project = workspace.projects
                 .add({
                     name: normalizedOptions.projectName,
                     root: normalizedOptions.projectRoot,
                     sourceRoot: `${normalizedOptions.projectRoot}/src`,
                     projectType,
-                })
-                .targets.add({
-                    name: 'deploy',
-                    builder: '@nx-plug/aws-cdk:deploy',
                 });
+
+            // Only works on linux
+            const optionalArgCmd = (cmd: string, arg: string) => `if [ "{args.${arg}}" = "undefined" ]; then ${cmd}; else ${cmd} {args.${arg}}; fi`;
+
+            project.targets.add({
+                name: 'deploy',
+                builder: '@nrwl/workspace:run-commands',
+                options: {
+                    cwd: normalizedOptions.projectRoot,
+                    commands: [
+                        { command: optionalArgCmd('cdk deploy --require-approval=never', 'stack') },
+                    ],
+                },
+            });
+
+            project.targets.add({
+                name: 'destroy',
+                builder: '@nrwl/workspace:run-commands',
+                options: {
+                    cwd: normalizedOptions.projectRoot,
+                    commands: [
+                        { command: optionalArgCmd('cdk destroy -f', 'stack') },
+                    ],
+                },
+            });
         }),
         addProjectToNxJsonInTree(normalizedOptions.projectName, {
             tags: normalizedOptions.parsedTags,
