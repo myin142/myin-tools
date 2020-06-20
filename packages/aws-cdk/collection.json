@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "name": "aws-cdk",
+  "version": "0.0.1",
+  "schematics": {
+    "aws-cdk": {
+      "factory": "./src/schematics/aws-cdk/schematic",
+      "schema": "./src/schematics/aws-cdk/schema.json",
+      "description": "aws-cdk schematic"
+    }
+  }
+}
