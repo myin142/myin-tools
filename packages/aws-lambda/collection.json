@@ -3,9 +3,9 @@
   "name": "aws-lambda",
   "version": "0.0.1",
   "schematics": {
-    "application": {
-      "factory": "./src/schematics/application/schematic",
-      "schema": "./src/schematics/application/schema.json",
+    "function": {
+      "factory": "./src/schematics/function/schematic",
+      "schema": "./src/schematics/function/schema.json",
       "aliases": ["app"],
       "description": "AWS Lambda Application"
     }
