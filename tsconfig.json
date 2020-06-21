@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-plug/aws-cdk": ["packages/aws-cdk/src/index.ts"]
+      "@nx-plug/aws-cdk": ["packages/aws-cdk/src/index.ts"],
+      "@nx-plug/aws-lambda": ["packages/aws-lambda/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
