@@ -23,7 +23,7 @@ import { AwsLambdaSchematicSchema } from './schema';
 /**
  * Depending on your needs, you can change this to either `Library` or `Application`
  */
-const projectType = ProjectType.Library;
+const projectType = ProjectType.Application;
 
 interface NormalizedSchema extends AwsLambdaSchematicSchema {
     projectName: string;
