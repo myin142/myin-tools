@@ -17,8 +17,10 @@ import {
     toFileName,
     updateWorkspace,
     addPackageWithInit,
+    addDepsToPackageJson,
 } from '@nrwl/workspace';
 import { AwsLambdaSchematicSchema } from './schema';
+import { CDK_VERSION } from '@nx-plug/cdk-shared';
 
 /**
  * Depending on your needs, you can change this to either `Library` or `Application`
@@ -68,7 +70,11 @@ function addFiles(options: NormalizedSchema): Rule {
 export default function (options: AwsLambdaSchematicSchema): Rule {
     const normalizedOptions = normalizeOptions(options);
     return chain([
-        // addPackageWithInit('@nrwl/jest'),
+        addPackageWithInit('@nrwl/jest'),
+        addDepsToPackageJson({}, {
+            '@aws-cdk/aws-lambda': CDK_VERSION,
+            '@aws-cdk/aws-lambda-nodejs': CDK_VERSION,
+        }),
         updateWorkspace((workspace) => {
             workspace.projects
                 .add({
@@ -85,8 +91,8 @@ export default function (options: AwsLambdaSchematicSchema): Rule {
         // Throws error on creating application
         // Cannot read property 'test' of undefined
         //
-        // externalSchematic('@nrwl/jest', 'jest-project', {
-        //     project: options.name,
-        // }),
+        externalSchematic('@nrwl/jest', 'jest-project', {
+            project: options.name,
+        }),
     ]);
 }

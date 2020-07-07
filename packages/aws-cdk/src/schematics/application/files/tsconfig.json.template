@@ -1,12 +1,12 @@
 {
-    "extends": "<%= offsetFromRoot %>tsconfig.json",
-    "compilerOptions": {
-        "module": "commonjs",
-        "types": [
-            "node"
-        ]
-    },
-    "include": [
-        "**/*.ts",
+  "extends": "<%= offsetFromRoot %>tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "types": [
+      "node"
     ]
+  },
+  "include": [
+    "**/*.ts"
+  ]
 }

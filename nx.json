@@ -32,6 +32,9 @@
     "aws-lambda-e2e": {
       "tags": [],
       "implicitDependencies": ["aws-lambda"]
+    },
+    "cdk-shared": {
+      "tags": []
     }
   },
   "workspaceLayout": {
