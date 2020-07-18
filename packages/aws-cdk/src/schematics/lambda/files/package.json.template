@@ -1,5 +1,6 @@
 {
   "name": "<%= projectName %>",
   "version": "1.0.0",
-  "main": "src/app.js"
+  "main": "src/app.js",
+  "dependencies": {}
 }
