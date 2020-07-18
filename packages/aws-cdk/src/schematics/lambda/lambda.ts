@@ -7,6 +7,7 @@ import {
   Rule,
   url,
   externalSchematic,
+  Tree,
 } from '@angular-devkit/schematics';
 import {
   addProjectToNxJsonInTree,
@@ -18,9 +19,12 @@ import {
   updateWorkspace,
   addPackageWithInit,
   addDepsToPackageJson,
+  readJsonInTree,
+  updateJsonInTree,
 } from '@nrwl/workspace';
 import { LambdaSchema } from './schema';
 import { CDK_VERSION } from '../../utils/cdk-shared';
+import { libsDir } from '@nrwl/workspace/src/utils/ast-utils';
 
 /**
  * Depending on your needs, you can change this to either `Library` or `Application`
@@ -67,6 +71,23 @@ function addFiles(options: NormalizedSchema): Rule {
   );
 }
 
+function updateTsConfig(options: NormalizedSchema): Rule {
+  return chain([
+    (host: Tree) => {
+      const nxJson = readJsonInTree(host, 'nx.json');
+      return updateJsonInTree('tsconfig.json', (json) => {
+        const c = json.compilerOptions;
+        c.paths = c.paths || {};
+        delete c.paths[options.name];
+        c.paths[`@${nxJson.npmScope}/${options.projectDirectory}`] = [
+          `${libsDir(host)}/${options.projectDirectory}/src/app.ts`,
+        ];
+        return json;
+      });
+    },
+  ]);
+}
+
 export default function (options: LambdaSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
   return chain([
@@ -92,6 +113,7 @@ export default function (options: LambdaSchema): Rule {
       tags: normalizedOptions.parsedTags,
     }),
     addFiles(normalizedOptions),
+    updateTsConfig(normalizedOptions),
     externalSchematic('@nrwl/jest', 'jest-project', {
       // Use normalized option name, when using --directory name will be slightly different
       project: normalizedOptions.projectName,
