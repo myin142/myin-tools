@@ -15,6 +15,11 @@
       "schema": "./src/schematics/application/schema.json",
       "aliases": ["app"],
       "description": "Create CDK Application"
+    },
+    "lambda": {
+      "factory": "./src/schematics/lambda/lambda",
+      "schema": "./src/schematics/lambda/schema.json",
+      "description": "Create Lambda Function"
     }
   }
 }

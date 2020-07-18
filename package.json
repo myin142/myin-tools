@@ -27,12 +27,12 @@
     "help": "nx help"
   },
   "dependencies": {
-    "@angular-devkit/schematics": "^9.1.9",
-    "@aws-cdk/core": "^1.46.0",
-    "aws-cdk": "^1.46.0"
+    "@angular-devkit/schematics": "^9.1.11",
+    "@aws-cdk/core": "^1.51.0",
+    "aws-cdk": "^1.51.0"
   },
   "devDependencies": {
-    "@aws-cdk/assert": "^1.46.0",
+    "@aws-cdk/assert": "^1.51.0",
     "@nrwl/eslint-plugin-nx": "9.4.5",
     "@nrwl/jest": "9.4.5",
     "@nrwl/nx-plugin": "9.4.5",

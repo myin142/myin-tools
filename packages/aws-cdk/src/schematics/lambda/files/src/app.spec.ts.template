@@ -1,4 +1,4 @@
-import { handler } from './app.ts';
+import { handler } from './app';
 
 describe('Tests index', function () {
 

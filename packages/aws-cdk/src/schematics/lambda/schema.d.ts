@@ -1,4 +1,4 @@
-export interface AwsLambdaSchematicSchema {
+export interface LambdaSchema {
   name: string;
   tags?: string;
   directory?: string;
