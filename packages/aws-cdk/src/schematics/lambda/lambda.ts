@@ -8,6 +8,9 @@ import {
   url,
   externalSchematic,
   Tree,
+  MergeStrategy,
+  forEach,
+  filter,
 } from '@angular-devkit/schematics';
 import {
   addProjectToNxJsonInTree,
@@ -59,39 +62,30 @@ function normalizeOptions(options: LambdaSchema): NormalizedSchema {
 }
 
 function addFiles(options: NormalizedSchema): Rule {
-  return mergeWith(
-    apply(url(`./files`), [
-      applyTemplates({
-        ...options,
-        ...names(options.name),
-        offsetFromRoot: offsetFromRoot(options.projectRoot),
-      }),
-      move(options.projectRoot),
-    ])
-  );
-}
-
-function updateTsConfig(options: NormalizedSchema): Rule {
-  return chain([
-    (host: Tree) => {
-      const nxJson = readJsonInTree(host, 'nx.json');
-      return updateJsonInTree('tsconfig.json', (json) => {
-        const c = json.compilerOptions;
-        c.paths = c.paths || {};
-        delete c.paths[options.name];
-        c.paths[`@${nxJson.npmScope}/${options.projectDirectory}`] = [
-          `${libsDir(host)}/${options.projectDirectory}/src/app.ts`,
-        ];
-        return json;
-      });
-    },
-  ]);
+  return (host: Tree) =>
+    mergeWith(
+      apply(url(`./files`), [
+        applyTemplates({
+          ...options,
+          ...names(options.name),
+          offsetFromRoot: offsetFromRoot(options.projectRoot),
+        }),
+        move(options.projectRoot),
+        forEach((file) => {
+          // Ignore package.json, while testing it always overwrote the root package.json of project
+          if (host.exists(file.path) && file.path !== '/package.json') {
+            host.overwrite(file.path, file.content);
+            return null;
+          }
+          return file;
+        }),
+      ])
+    );
 }
 
 export default function (options: LambdaSchema): Rule {
   const normalizedOptions = normalizeOptions(options);
   return chain([
-    addPackageWithInit('@nrwl/jest'),
     addDepsToPackageJson(
       {},
       {
@@ -99,25 +93,7 @@ export default function (options: LambdaSchema): Rule {
         '@aws-cdk/aws-lambda-nodejs': CDK_VERSION,
       }
     ),
-    updateWorkspace((workspace) => {
-      workspace.projects.add({
-        name: normalizedOptions.projectName,
-        root: normalizedOptions.projectRoot,
-        sourceRoot: `${normalizedOptions.projectRoot}`,
-        projectType,
-        // project has to architect on default, so it will throw exception if not set
-        architect: {},
-      });
-    }),
-    addProjectToNxJsonInTree(normalizedOptions.projectName, {
-      tags: normalizedOptions.parsedTags,
-    }),
+    externalSchematic('@nrwl/workspace', 'lib', { ...options }),
     addFiles(normalizedOptions),
-    updateTsConfig(normalizedOptions),
-    externalSchematic('@nrwl/jest', 'jest-project', {
-      // Use normalized option name, when using --directory name will be slightly different
-      project: normalizedOptions.projectName,
-      skipSerializers: true,
-    }),
   ]);
 }

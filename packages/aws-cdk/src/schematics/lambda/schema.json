@@ -22,6 +22,12 @@
       "type": "string",
       "description": "A directory where the project is placed",
       "alias": "d"
+    },
+    "linter": {
+      "description": "The tool to use for running lint checks.",
+      "type": "string",
+      "enum": ["eslint", "tslint"],
+      "default": "eslint"
     }
   },
   "required": ["name"]
