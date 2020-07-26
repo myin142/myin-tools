@@ -1,4 +1,10 @@
 {
   "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
-  "builders": {}
+  "builders": {
+    "package": {
+      "implementation": "./src/builders/package/package",
+      "schema": "./src/builders/package/schema.json",
+      "description": "Package Lambda Code"
+    }
+  }
 }
