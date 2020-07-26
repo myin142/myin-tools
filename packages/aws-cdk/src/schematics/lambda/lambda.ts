@@ -8,26 +8,18 @@ import {
   url,
   externalSchematic,
   Tree,
-  MergeStrategy,
   forEach,
-  filter,
 } from '@angular-devkit/schematics';
 import {
-  addProjectToNxJsonInTree,
   names,
   offsetFromRoot,
   projectRootDir,
   ProjectType,
   toFileName,
-  updateWorkspace,
-  addPackageWithInit,
   addDepsToPackageJson,
-  readJsonInTree,
-  updateJsonInTree,
 } from '@nrwl/workspace';
 import { LambdaSchema } from './schema';
 import { CDK_VERSION } from '../../utils/cdk-shared';
-import { libsDir } from '@nrwl/workspace/src/utils/ast-utils';
 
 /**
  * Depending on your needs, you can change this to either `Library` or `Application`
