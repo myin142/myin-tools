@@ -23,50 +23,27 @@ import { readJsonFile, toClassName } from '@nrwl/workspace';
 
 const typescript = require('rollup-plugin-typescript2');
 const copy = require('rollup-plugin-copy');
+const commonjs = require('@rollup/plugin-commonjs');
 
 function createRollUpConfig(
     options: PackageBuilderSchema,
     context: BuilderContext,
     dependencies: DependentBuildableProjectNode[]
 ): rollup.RollupOptions {
-    // const compilerOptionPaths = computeCompilerOptionsPaths(
-    //     options.tsConfig,
-    //     dependencies
-    // );
     const entryRoot = dirname(options.entryFile);
-    const fileName = options.entryFile.substring(entryRoot.length + 1);
     const packageJsonPath = join(entryRoot, 'package.json');
 
-    // const project = await context.getProjectMetadata(context.target.project);
-    // context.logger.info(Object.keys(project).join(', '));
-    // const libRoot = projGraph.nodes[context.target.project].data.root;
-    const libRoot = join(entryRoot);
-    context.logger.info(libRoot);
-    let tsconfigPath = join(context.workspaceRoot, options.tsConfig); //join(entryRoot, 'tsconfig.json');
-    tsconfigPath = createTmpTsConfig(
-        tsconfigPath,
-        context.workspaceRoot,
-        libRoot,
-        dependencies
-    );
-    context.logger.info(tsconfigPath);
-
+    const tsconfigPath = join(context.workspaceRoot, options.tsConfig);
     const packageJson = readJsonFile(packageJsonPath);
     const plugins = [
         typescript({
             check: true,
             tsconfig: tsconfigPath,
             tsconfigOverride: {
-                compilerOptions: {
-                    declaration: true,
-                    allowJs: false,
-                },
+                compilerOptions: {},
             },
         }),
-        peerDepsExternal({
-            packageJson: options.packageJson,
-        }),
-        localResolve(),
+        commonjs(),
         copy({
             targets: [
                 { src: `${packageJsonPath}`, dest: `${options.outputPath}` },
