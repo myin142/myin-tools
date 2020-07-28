@@ -4,7 +4,7 @@
 
 ## Install
 
-`npm install --save-dev @ng-plug/aws-cdk`
+`npm install --save-dev @nx-plug/aws-cdk`
 
 ## Schematics
 
