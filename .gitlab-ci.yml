@@ -4,6 +4,9 @@ cache:
     paths:
         - node_modules/
 
+only:
+    - tags
+
 stages:
     - build
     - publish
