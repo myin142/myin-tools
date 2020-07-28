@@ -13,17 +13,13 @@ import {
     calculateProjectDependencies,
     checkDependentProjectsHaveBeenBuilt,
     DependentBuildableProjectNode,
-    createTmpTsConfig,
 } from '@nrwl/workspace/src/utils/buildable-libs-utils';
-import * as rollup from 'rollup';
-import * as peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import * as localResolve from 'rollup-plugin-local-resolve';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { readJsonFile, toClassName } from '@nrwl/workspace';
+import * as rollup from 'rollup';
+import * as npm from 'npm';
 
 const typescript = require('rollup-plugin-typescript2');
 const copy = require('rollup-plugin-copy');
-const commonjs = require('@rollup/plugin-commonjs');
 
 function createRollUpConfig(
     options: PackageBuilderSchema,
@@ -40,10 +36,11 @@ function createRollUpConfig(
             check: true,
             tsconfig: tsconfigPath,
             tsconfigOverride: {
-                compilerOptions: {},
+                compilerOptions: {
+                    target: 'es2017', // keep asyc/await
+                },
             },
         }),
-        commonjs(),
         copy({
             targets: [
                 { src: `${packageJsonPath}`, dest: `${options.outputPath}` },
@@ -58,7 +55,7 @@ function createRollUpConfig(
     return {
         input: options.entryFile,
         output: {
-            format: 'esm',
+            format: 'cjs', // build for nodejs
             file: `${options.outputPath}/${context.target.project}.js`,
             name: toClassName(context.target.project),
         },
@@ -84,16 +81,27 @@ export function packageBuilder(
     context: BuilderContext
 ): Observable<BuilderOutput> {
     const projGraph = createProjectGraph();
-    const { target, dependencies } = calculateProjectDependencies(
-        projGraph,
-        context
-    );
+    const { dependencies } = calculateProjectDependencies(projGraph, context);
 
     return of(checkDependentProjectsHaveBeenBuilt(context, dependencies)).pipe(
         switchMap((built) => {
             if (!built) return of({ success: false });
             const config = createRollUpConfig(options, context, dependencies);
+            context.logger.info('Run rollup');
             return runRollup(config);
+        }),
+        switchMap(() => {
+            return from<Promise<BuilderOutput>>(
+                new Promise((resolve) => {
+                    context.logger.info('Install packages');
+                    npm.load({ prefix: options.outputPath }, () => {
+                        npm.commands.install([], (err, data) => {
+                            if (err) context.logger.info(err.message);
+                            resolve({ success: err == null });
+                        });
+                    });
+                })
+            );
         })
     );
 }
