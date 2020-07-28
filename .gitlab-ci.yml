@@ -4,9 +4,6 @@ cache:
     paths:
         - node_modules/
 
-only:
-    - tags
-
 stages:
     - build
     - publish
@@ -19,6 +16,8 @@ build:
     artifacts:
         paths:
             - dist/packages
+    only:
+        - tags
 
 publish:
     stage: publish
@@ -26,3 +25,5 @@ publish:
         - build
     script:
         - npm publish dist/packages/aws-cdk
+    only:
+        - tags
