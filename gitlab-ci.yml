@@ -1,0 +1,23 @@
+cache:
+    paths:
+        - node_modules/
+
+stages:
+    - build
+    - publish
+
+build:
+    stage: build
+    script:
+        - npm i
+        - npm run build
+    artifacts:
+        paths:
+            - dist/packages
+
+publish:
+    stage: publish
+    dependencies:
+        - build
+    script:
+        - npm publish dist/packages/aws-cdk
