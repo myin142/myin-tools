@@ -4,20 +4,5 @@
     "main": "src/index.js",
     "schematics": "./collection.json",
     "builders": "./builders.json",
-    "peerDependencies": {
-        "@nrwl/workspace": "*",
-        "@nrwl/jest": "*",
-        "@aws-cdk/core": "*",
-        "@aws-cdk/cloud-assembly-schema": "*",
-        "@aws-cdk/cx-api": "*",
-        "aws-cdk": "*"
-    },
-    "dependencies": {
-        "@nrwl/workspace": "*",
-        "@nrwl/jest": "*",
-        "@aws-cdk/core": "*",
-        "@aws-cdk/cloud-assembly-schema": "*",
-        "@aws-cdk/cx-api": "*",
-        "aws-cdk": "*"
-    }
+    "dependencies": {}
 }

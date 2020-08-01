@@ -125,6 +125,43 @@
                     }
                 }
             }
+        },
+        "utils": {
+            "root": "packages/utils",
+            "sourceRoot": "packages/utils/src",
+            "projectType": "library",
+            "schematics": {},
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:lint",
+                    "options": {
+                        "linter": "eslint",
+                        "tsConfig": [
+                            "packages/utils/tsconfig.lib.json",
+                            "packages/utils/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!packages/utils/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "packages/utils/jest.config.js",
+                        "tsConfig": "packages/utils/tsconfig.spec.json",
+                        "passWithNoTests": true
+                    }
+                },
+                "build": {
+                    "builder": "@nrwl/node:package",
+                    "options": {
+                        "outputPath": "dist/packages/utils",
+                        "tsConfig": "packages/utils/tsconfig.lib.json",
+                        "packageJson": "packages/utils/package.json",
+                        "main": "packages/utils/src/index.ts",
+                        "assets": ["packages/myin-cli/*.md"]
+                    }
+                }
+            }
         }
     },
     "cli": {

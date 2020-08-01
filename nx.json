@@ -32,6 +32,9 @@
         "myin-cli-e2e": {
             "tags": [],
             "implicitDependencies": ["myin-cli"]
+        },
+        "utils": {
+            "tags": []
         }
     },
     "workspaceLayout": {

@@ -40,6 +40,31 @@ describe('myin-cli e2e', () => {
                 { file: 'root', data: 'New Root' },
             ]);
         });
+
+        // Currently only compares one level
+        it('not replace excluded path in target directory', async () => {
+            await createFiles('target', [
+                { file: 'root', data: 'Root' },
+                { file: 'excluded', data: 'Excluded' },
+            ]);
+
+            await createFiles('source', [
+                { file: 'root', data: '' },
+                { file: 'excluded', data: '' },
+                { file: 'folder/excluded', data: '' },
+            ]);
+
+            await replaceFiles.handler({
+                directory: `${tmp}/source`,
+                target: `${tmp}/target`,
+                exclude: ['excluded'],
+            });
+
+            await expectFiles('target', [
+                { file: 'root', data: '' },
+                { file: 'excluded', data: 'Excluded' },
+            ]);
+        });
     });
 
     async function expectFiles(dir: string, files: FileData[]) {

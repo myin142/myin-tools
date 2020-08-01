@@ -1,5 +1,6 @@
 import * as fs from 'fs-extra';
 import { CliCommand } from './command';
+import { globMatch } from '@myin/utils';
 
 export const replaceFiles: CliCommand<ExecuteFilesArgv> = {
     name: 'replaceFiles',
@@ -15,16 +16,19 @@ export const replaceFiles: CliCommand<ExecuteFilesArgv> = {
             .option('target', {
                 type: 'string',
                 demandOption: true,
+            })
+            .option('exclude', {
+                type: 'array',
             });
     },
-    handler: async (argv) => {
-        const dir = argv.directory;
-        const target = argv.target;
-
+    handler: async ({ directory, target, exclude = [] }) => {
         return Promise.all(
-            fs.readdirSync(dir).map(async (file) => {
-                const source = `${dir}/${file}`;
+            fs.readdirSync(directory).map(async (file) => {
+                const source = `${directory}/${file}`;
                 const dest = `${target}/${file}`;
+
+                if (exclude.some((r) => globMatch(file, r))) return;
+
                 if (await fs.pathExists(dest)) {
                     await fs.remove(dest);
                 }
@@ -38,4 +42,5 @@ export const replaceFiles: CliCommand<ExecuteFilesArgv> = {
 export interface ExecuteFilesArgv {
     target: string;
     directory: string;
+    exclude?: string[];
 }
