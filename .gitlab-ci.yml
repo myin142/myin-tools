@@ -24,6 +24,7 @@ publish:
     dependencies:
         - build
     script:
+        - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         - npm publish dist/packages/aws-cdk
     only:
         - tags
