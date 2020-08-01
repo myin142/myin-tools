@@ -1,34 +1,37 @@
 {
-  "npmScope": "nx-plug",
-  "implicitDependencies": {
-    "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
+    "npmScope": "nx-plug",
+    "implicitDependencies": {
+        "workspace.json": "*",
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        "tsconfig.json": "*",
+        "tslint.json": "*",
+        "nx.json": "*"
     },
-    "tsconfig.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*"
-  },
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
-    }
-  },
-  "projects": {
-    "aws-cdk": {
-      "tags": []
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
     },
-    "aws-cdk-e2e": {
-      "tags": [],
-      "implicitDependencies": ["aws-cdk"]
+    "projects": {
+        "aws-cdk": {
+            "tags": []
+        },
+        "aws-cdk-e2e": {
+            "tags": [],
+            "implicitDependencies": ["aws-cdk"]
+        },
+        "myin-cli": {
+            "tags": []
+        }
+    },
+    "workspaceLayout": {
+        "appsDir": "e2e",
+        "libsDir": "packages"
     }
-  },
-  "workspaceLayout": {
-    "appsDir": "e2e",
-    "libsDir": "packages"
-  }
 }
