@@ -1,4 +1,4 @@
-# aws-cdk
+# myin-cli
 
 This library was generated with [Nx](https://nx.dev).
 

@@ -1,9 +1,16 @@
 {
     "name": "@myin/cli",
-    "version": "0.0.0",
+    "version": "0.0.4",
     "main": "src/index.js",
     "dependencies": {
         "yargs": "^15.4.1",
+        "tslib": "^2.0.0",
         "fs-extra": "^9.0.1"
+    },
+    "files": [
+        "src/**.js"
+    ],
+    "bin": {
+        "myin-cli": "src/index.js"
     }
 }

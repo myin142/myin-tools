@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { scriptName } from 'yargs';
 import { CliCommand } from './command';
 import { replaceFiles } from './files';
@@ -10,5 +12,6 @@ commands.forEach(({ name, description, handler, setup }) => {
     cli = cli.command(name, description, setup, handler);
 });
 
-export default cli;
+cli.argv;
+
 export * from './files';

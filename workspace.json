@@ -15,10 +15,7 @@
                             "packages/aws-cdk/tsconfig.lib.json",
                             "packages/aws-cdk/tsconfig.spec.json"
                         ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "!packages/aws-cdk/**/*"
-                        ]
+                        "exclude": ["**/node_modules/**", "!packages/aws-cdk/**/*"]
                     }
                 },
                 "test": {
@@ -89,10 +86,7 @@
                             "packages/myin-cli/tsconfig.lib.json",
                             "packages/myin-cli/tsconfig.spec.json"
                         ],
-                        "exclude": [
-                            "**/node_modules/**",
-                            "!packages/myin-cli/**/*"
-                        ]
+                        "exclude": ["**/node_modules/**", "!packages/myin-cli/**/*"]
                     }
                 },
                 "test": {
@@ -110,24 +104,7 @@
                         "tsConfig": "packages/myin-cli/tsconfig.lib.json",
                         "packageJson": "packages/myin-cli/package.json",
                         "main": "packages/myin-cli/src/index.ts",
-                        "assets": [
-                            "packages/myin-cli/*.md",
-                            {
-                                "input": "./packages/myin-cli/src",
-                                "glob": "**/*.!(ts)",
-                                "output": "./src"
-                            },
-                            {
-                                "input": "./packages/myin-cli",
-                                "glob": "collection.json",
-                                "output": "."
-                            },
-                            {
-                                "input": "./packages/myin-cli",
-                                "glob": "builders.json",
-                                "output": "."
-                            }
-                        ]
+                        "assets": ["packages/myin-cli/*.md"]
                     }
                 }
             }
