@@ -1,16 +1,14 @@
-import * as fs from 'fs';
-import { command, scriptName } from 'yargs';
+import { scriptName } from 'yargs';
+import { CliCommand } from './command';
+import { replaceFiles } from './files';
 
-scriptName('myin-cli').usage('$0 <cmd> [args]');
-command(
-    'executeFiles',
-    'Execute command for files/folder in directory',
-    (yargs) => {
-        yargs.options('target', {
-            type: 'string',
-        });
-    },
-    (argv) => {
-        console.log(argv);
-    }
-).argv;
+const commands: CliCommand<unknown>[] = [replaceFiles];
+
+let cli = scriptName('myin-cli');
+
+commands.forEach(({ name, description, handler, setup }) => {
+    cli = cli.command(name, description, setup, handler);
+});
+
+export default cli;
+export * from './files';

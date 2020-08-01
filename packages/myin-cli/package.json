@@ -1,5 +1,9 @@
 {
     "name": "@myin/cli",
-    "version": "0.0.1",
-    "main": "src/index.js"
+    "version": "0.0.0",
+    "main": "src/index.js",
+    "dependencies": {
+        "yargs": "^15.4.1",
+        "fs-extra": "^9.0.1"
+    }
 }

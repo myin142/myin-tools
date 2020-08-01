@@ -1,5 +1,5 @@
 {
-    "npmScope": "nx-plug",
+    "npmScope": "myin",
     "implicitDependencies": {
         "workspace.json": "*",
         "package.json": {
