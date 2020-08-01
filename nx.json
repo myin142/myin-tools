@@ -28,6 +28,10 @@
         },
         "myin-cli": {
             "tags": []
+        },
+        "myin-cli-e2e": {
+            "tags": [],
+            "implicitDependencies": ["myin-cli"]
         }
     },
     "workspaceLayout": {

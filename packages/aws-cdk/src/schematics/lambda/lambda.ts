@@ -93,7 +93,7 @@ export default function (options: LambdaSchema): Rule {
         addFiles(normalizedOptions),
         updateWorkspaceInTree((json) => {
             const packageArchitect = {
-                builder: '@nx-plug/aws-cdk:package',
+                builder: '@myin/aws-cdk:package',
                 options: {
                     entryFile: `${normalizedOptions.projectRoot}/src/index.ts`,
                     tsConfig: `${normalizedOptions.projectRoot}/tsconfig.lib.json`,

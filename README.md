@@ -1,19 +1,17 @@
-# NxPlug
+# Myin Tools
 
-![npm (scoped)](https://img.shields.io/npm/v/@nx-plug/aws-cdk?style=flat-square)
+![npm (scoped)](https://img.shields.io/npm/v/@myin/aws-cdk?style=flat-square)
 
 ## Install
 
-`npm install --save-dev @nx-plug/aws-cdk`
+`npm install --save-dev @myin/aws-cdk`
 
 ## Schematics
 
 -   [x] Application: contains multiple stacks
-    -   `nx g @ng-plug/aws-cdk:application <project-name>`
+    -   `nx g @myin/aws-cdk:application <project-name>`
 -   [x] Lambda
-    -   `nx g @ng-plug/aws-cdk:lambda <project-name>`
--   [ ] Stack: a cloudformation stack
-    -   `nx g @ng-plug/aws-cdk:stack <stack-name>`
+    -   `nx g @myin/aws-cdk:lambda <project-name>`
 
 ## Builders
 

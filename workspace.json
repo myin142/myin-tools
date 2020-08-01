@@ -67,7 +67,7 @@
                     "builder": "@nrwl/nx-plugin:e2e",
                     "options": {
                         "target": "aws-cdk:build",
-                        "npmPackageName": "@nx-plug/aws-cdk",
+                        "npmPackageName": "@myin/aws-cdk",
                         "pluginOutputPath": "dist/packages/aws-cdk",
                         "jestConfig": "e2e/aws-cdk-e2e/jest.config.js",
                         "tsSpecConfig": "e2e/aws-cdk-e2e/tsconfig.spec.json"
@@ -128,6 +128,23 @@
                                 "output": "."
                             }
                         ]
+                    }
+                }
+            }
+        },
+        "myin-cli-e2e": {
+            "projectType": "application",
+            "root": "e2e/myin-cli-e2e",
+            "sourceRoot": "e2e/myin-cli-e2e/src",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/nx-plugin:e2e",
+                    "options": {
+                        "target": "aws-cdk:build",
+                        "npmPackageName": "@myin/cli",
+                        "pluginOutputPath": "dist/packages/myin-cli",
+                        "jestConfig": "e2e/myin-cli-e2e/jest.config.js",
+                        "tsSpecConfig": "e2e/myin-cli-e2e/tsconfig.spec.json"
                     }
                 }
             }
