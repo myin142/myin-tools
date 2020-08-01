@@ -1,7 +1,23 @@
 # aws-cdk
 
-This library was generated with [Nx](https://nx.dev).
+## Install
 
-## Running unit tests
+`npm install --save-dev @myin/aws-cdk`
 
-Run `ng test aws-cdk` to execute the unit tests via [Jest](https://jestjs.io).
+## Schematics
+
+-   Application: contains multiple stacks
+    -   `nx g @myin/aws-cdk:application <project-name>`
+-   Lambda
+    -   `nx g @myin/aws-cdk:lambda <project-name>`
+
+## Builders
+
+-   Deploy/Destroy:
+    -   `nx deploy <project-name>` or `nx destroy <project-name>`
+    -   Deploy/Destroy specific stack: `nx deploy <project-name> --args="--stack=<stack-name>"`
+    -   WARNING: It will not ask for any confirmations. Use at your own risk.
+    -   Only works on linux
+-   Package: packages lambda application, ready for upload
+    -   `nx package <project-name>`
+    -   Compiles Typescript into `dist/` folder and installs node dependencies

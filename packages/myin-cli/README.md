@@ -1,7 +1,10 @@
 # myin-cli
 
-This library was generated with [Nx](https://nx.dev).
+## Install
 
-## Running unit tests
+`npm install --save-dev @myin/cli`
 
-Run `ng test myin-cli` to execute the unit tests via [Jest](https://jestjs.io).
+## Commands
+
+-   `replaceFiles`: Replace/copy files/folders from one directory to another.
+    Deleting the items first before copying
