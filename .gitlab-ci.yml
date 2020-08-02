@@ -8,6 +8,12 @@ include:
     - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
 
 before_script:
+    - BASE=$CI_COMMIT_BEFORE_SHA
+    - if [ -z "$BASE" ]; then BASE="origin/master"; fi
+    - HEAD=$CI_COMMIT_SHA
+    - echo $BASE
+    - echo $HEAD
+    - BASE_HEAD_ARGS="--base=$BASE --head=$HEAD"
     - npm i
 
 stages:
@@ -17,17 +23,17 @@ stages:
 test:
     stage: test
     script:
-        - npm run test
+        - npm run test -- $BASE_HEAD_ARGS
 
 lint:
     stage: test
     script:
-        - npm run lint
+        - npm run lint -- $BASE_HEAD_ARGS
 
 publish:
     stage: publish
     script:
         - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-        - npm run publish
+        - npm run publish -- $BASE_HEAD_ARGS
     rules:
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
