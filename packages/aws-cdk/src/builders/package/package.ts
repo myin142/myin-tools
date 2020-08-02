@@ -1,9 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import {
-    BuilderContext,
-    BuilderOutput,
-    createBuilder,
-} from '@angular-devkit/architect';
+import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
 import { Observable, of, from } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { PackageBuilderSchema } from './schema';
@@ -42,9 +38,7 @@ function createRollUpConfig(
             },
         }),
         copy({
-            targets: [
-                { src: `${packageJsonPath}`, dest: `${options.outputPath}` },
-            ],
+            targets: [{ src: `${packageJsonPath}`, dest: `${options.outputPath}` }],
         }),
     ];
 
@@ -67,9 +61,7 @@ function createRollUpConfig(
 export function runRollup(options: rollup.RollupOptions) {
     return from(rollup.rollup(options)).pipe(
         switchMap((bundle) => {
-            const outputOptions = Array.isArray(options.output)
-                ? options.output
-                : [options.output];
+            const outputOptions = Array.isArray(options.output) ? options.output : [options.output];
             return from(Promise.all(outputOptions.map((o) => bundle.write(o))));
         }),
         map(() => ({ success: true }))

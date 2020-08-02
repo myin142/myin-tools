@@ -1,5 +1,5 @@
 import * as fs from 'fs-extra';
-import { replaceFiles } from '@myin/myin-cli';
+import { ReplaceFiles } from '@myin/myin-cli';
 
 describe('myin-cli e2e', () => {
     let tmp: string;
@@ -16,7 +16,13 @@ describe('myin-cli e2e', () => {
         await fs.remove(tmp);
     });
 
-    describe('Files', () => {
+    describe('Replace Files', () => {
+        let replaceFiles: ReplaceFiles;
+
+        beforeEach(() => {
+            replaceFiles = new ReplaceFiles();
+        });
+
         it('replace existing path in target directory', async () => {
             await createFiles('target', [
                 { file: 'folder1/file', data: 'Folder 1' },

@@ -2,9 +2,9 @@
 
 import { scriptName } from 'yargs';
 import { CliCommand } from './command';
-import { replaceFiles } from './files';
+import { ReplaceFiles } from './lib/files/replace-files';
 
-const commands: CliCommand<unknown>[] = [replaceFiles];
+const commands: CliCommand<unknown>[] = [new ReplaceFiles()];
 
 let cli = scriptName('myin-cli');
 
@@ -14,4 +14,4 @@ commands.forEach(({ name, description, handler, setup }) => {
 
 cli.argv;
 
-export * from './files';
+export * from './lib/files/replace-files';
