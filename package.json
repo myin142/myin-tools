@@ -16,16 +16,9 @@
         "affected:e2e": "nx affected:e2e",
         "affected:test": "nx affected:test",
         "affected:lint": "nx affected:lint",
-        "affected:dep-graph": "nx affected:dep-graph",
-        "affected": "nx affected",
         "format": "nx format:write",
-        "format:write": "nx format:write",
-        "format:check": "nx format:check",
-        "update": "nx migrate latest",
-        "workspace-schematic": "nx workspace-schematic",
-        "dep-graph": "nx dep-graph",
-        "help": "nx help",
-        "cli:build": "nx build myin-cli --with-deps && npm i --prefix dist/packages/myin-cli"
+        "cli:build": "nx build cli --with-deps && npm i --prefix dist/packages/cli",
+        "cli:publish": "node dist/packages/cli publishPackage"
     },
     "dependencies": {
         "@aws-cdk/core": "^1.54.0",
@@ -35,6 +28,8 @@
     },
     "devDependencies": {
         "@aws-cdk/assert": "^1.54.0",
+        "@myin/cli": "0.0.6",
+        "@myin/nx-builder": "^0.0.1",
         "@nrwl/eslint-plugin-nx": "^10.0.2",
         "@nrwl/jest": "^10.0.2",
         "@nrwl/node": "^10.0.7",

@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra';
-import { ReplaceFiles } from '@myin/myin-cli';
+import { ReplaceFiles } from '@myin/cli';
 
-describe('myin-cli e2e', () => {
+describe('cli e2e', () => {
     let tmp: string;
 
     beforeAll(async () => {

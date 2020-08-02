@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'myin-cli-e2e',
+    name: 'cli-e2e',
     preset: '../../jest.config.js',
-    coverageDirectory: '../../coverage/e2e/myin-cli-e2e',
+    coverageDirectory: '../../coverage/e2e/cli-e2e',
 };

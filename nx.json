@@ -19,6 +19,9 @@
         }
     },
     "projects": {
+        "nx-builder": {
+            "tags": []
+        },
         "aws-cdk": {
             "tags": []
         },

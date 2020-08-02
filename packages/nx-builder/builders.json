@@ -1,0 +1,10 @@
+{
+    "$schema": "../../node_modules/@angular-devkit/architect/src/builders-schema.json",
+    "builders": {
+        "npmPublish": {
+            "implementation": "./src/builders/npmPublish/npmPublish",
+            "schema": "./src/builders/npmPublish/schema.json",
+            "description": "Publish NPM package"
+        }
+    }
+}
