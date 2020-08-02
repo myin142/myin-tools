@@ -21,3 +21,4 @@ commands.forEach((cmd) => {
 cli.argv;
 
 export * from './lib/files/replace-files';
+export * from './lib/npm/publish-package';
