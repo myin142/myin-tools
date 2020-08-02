@@ -4,7 +4,7 @@ import { globMatch } from '@myin/utils';
 import { Arguments, Argv } from 'yargs';
 
 export class ReplaceFiles implements CliCommand<ExecuteFilesArgv> {
-    name = 'replaceFiles';
+    command = 'replaceFiles';
     description = 'Replace files/folder in a directory';
 
     constructor(private file: typeof fs = fs) {}

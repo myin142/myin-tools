@@ -3,13 +3,19 @@
 import { scriptName } from 'yargs';
 import { CliCommand } from './command';
 import { ReplaceFiles } from './lib/files/replace-files';
+import { PublishPackage } from './lib/npm/publish-package';
 
-const commands: CliCommand<unknown>[] = [new ReplaceFiles()];
+const commands: CliCommand<unknown>[] = [new ReplaceFiles(), new PublishPackage()];
 
 let cli = scriptName('myin-cli');
 
-commands.forEach(({ name, description, handler, setup }) => {
-    cli = cli.command(name, description, setup, handler);
+commands.forEach((cmd) => {
+    cli = cli.command(
+        cmd.command,
+        cmd.description,
+        (y) => cmd.setup(y),
+        (a) => cmd.handler(a)
+    );
 });
 
 cli.argv;

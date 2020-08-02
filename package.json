@@ -24,7 +24,8 @@
         "update": "nx migrate latest",
         "workspace-schematic": "nx workspace-schematic",
         "dep-graph": "nx dep-graph",
-        "help": "nx help"
+        "help": "nx help",
+        "cli:build": "nx build myin-cli --with-deps && npm i --prefix dist/packages/myin-cli"
     },
     "dependencies": {
         "@aws-cdk/core": "^1.54.0",

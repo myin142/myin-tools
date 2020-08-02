@@ -1,11 +1,12 @@
 {
     "name": "@myin/cli",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "main": "src/index.js",
     "dependencies": {
         "yargs": "^15.4.1",
         "tslib": "^2.0.0",
         "@myin/utils": "^0.0.1",
+        "npm": "^6.14.7",
         "fs-extra": "^9.0.1"
     },
     "files": [
