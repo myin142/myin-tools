@@ -4,6 +4,9 @@ cache:
     paths:
         - node_modules/
 
+include:
+    - template: 'Workflows/MergeRequest-Pipelines.gitlab-ci.yml'
+
 before_scripts:
     - npm i
 
