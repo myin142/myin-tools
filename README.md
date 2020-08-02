@@ -11,3 +11,7 @@
 ## @myin/utils
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/utils?style=flat-square)
+
+## @myin/nx-builder
+
+![npm (scoped)](https://img.shields.io/npm/v/@myin/nx-builder?style=flat-square)
