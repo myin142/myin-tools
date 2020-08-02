@@ -72,9 +72,9 @@
                 }
             }
         },
-        "myin-cli": {
-            "root": "packages/myin-cli",
-            "sourceRoot": "packages/myin-cli/src",
+        "cli": {
+            "root": "packages/cli",
+            "sourceRoot": "packages/cli/src",
             "projectType": "library",
             "schematics": {},
             "architect": {
@@ -83,45 +83,45 @@
                     "options": {
                         "linter": "eslint",
                         "tsConfig": [
-                            "packages/myin-cli/tsconfig.lib.json",
-                            "packages/myin-cli/tsconfig.spec.json"
+                            "packages/cli/tsconfig.lib.json",
+                            "packages/cli/tsconfig.spec.json"
                         ],
-                        "exclude": ["**/node_modules/**", "!packages/myin-cli/**/*"]
+                        "exclude": ["**/node_modules/**", "!packages/cli/**/*"]
                     }
                 },
                 "test": {
                     "builder": "@nrwl/jest:jest",
                     "options": {
-                        "jestConfig": "packages/myin-cli/jest.config.js",
-                        "tsConfig": "packages/myin-cli/tsconfig.spec.json",
+                        "jestConfig": "packages/cli/jest.config.js",
+                        "tsConfig": "packages/cli/tsconfig.spec.json",
                         "passWithNoTests": true
                     }
                 },
                 "build": {
                     "builder": "@nrwl/node:package",
                     "options": {
-                        "outputPath": "dist/packages/myin-cli",
-                        "tsConfig": "packages/myin-cli/tsconfig.lib.json",
-                        "packageJson": "packages/myin-cli/package.json",
-                        "main": "packages/myin-cli/src/index.ts",
-                        "assets": ["packages/myin-cli/*.md"]
+                        "outputPath": "dist/packages/cli",
+                        "tsConfig": "packages/cli/tsconfig.lib.json",
+                        "packageJson": "packages/cli/package.json",
+                        "main": "packages/cli/src/index.ts",
+                        "assets": ["packages/cli/*.md"]
                     }
                 }
             }
         },
-        "myin-cli-e2e": {
+        "cli-e2e": {
             "projectType": "application",
-            "root": "e2e/myin-cli-e2e",
-            "sourceRoot": "e2e/myin-cli-e2e/src",
+            "root": "e2e/cli-e2e",
+            "sourceRoot": "e2e/cli-e2e/src",
             "architect": {
                 "e2e": {
                     "builder": "@nrwl/nx-plugin:e2e",
                     "options": {
-                        "target": "aws-cdk:build",
+                        "target": "cli:build",
                         "npmPackageName": "@myin/cli",
-                        "pluginOutputPath": "dist/packages/myin-cli",
-                        "jestConfig": "e2e/myin-cli-e2e/jest.config.js",
-                        "tsSpecConfig": "e2e/myin-cli-e2e/tsconfig.spec.json"
+                        "pluginOutputPath": "dist/packages/cli",
+                        "jestConfig": "e2e/cli-e2e/jest.config.js",
+                        "tsSpecConfig": "e2e/cli-e2e/tsconfig.spec.json"
                     }
                 }
             }

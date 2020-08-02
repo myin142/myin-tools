@@ -26,12 +26,12 @@
             "tags": [],
             "implicitDependencies": ["aws-cdk"]
         },
-        "myin-cli": {
+        "cli": {
             "tags": []
         },
-        "myin-cli-e2e": {
+        "cli-e2e": {
             "tags": [],
-            "implicitDependencies": ["myin-cli"]
+            "implicitDependencies": ["cli"]
         },
         "utils": {
             "tags": []

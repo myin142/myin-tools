@@ -19,7 +19,7 @@
             "@myin/aws-cdk": ["packages/aws-cdk/src/index.ts"],
             "@myin/aws-lambda": ["packages/aws-lambda/src/index.ts"],
             "@myin/cdk-shared": ["packages/cdk-shared/src/index.ts"],
-            "@myin/myin-cli": ["packages/myin-cli/src/index.ts"],
+            "@myin/cli": ["packages/cli/src/index.ts"],
             "@myin/utils": ["packages/utils/src/index.ts"]
         }
     },
