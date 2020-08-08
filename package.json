@@ -42,6 +42,8 @@
         "jest": "25.2.3",
         "jest-extended": "^0.11.5",
         "jest-mock-extended": "^1.0.9",
+        "jsii": "^1.10.0",
+        "jsii-pacmak": "^1.10.0",
         "npm": "^6.14.7",
         "prettier": "2.0.4",
         "rollup": "^2.23.0",

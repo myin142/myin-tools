@@ -1,5 +1,7 @@
 # aws-cdk
 
+Working with AWS CDK in Nx workspaces
+
 ## Install
 
 `npm install --save-dev @myin/aws-cdk`

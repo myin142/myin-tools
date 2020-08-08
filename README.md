@@ -2,18 +2,18 @@
 
 ![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/myin142/myin-tools/master)
 
-## @myin/aws-cdk
+## [@myin/aws-cdk](./packages/aws-cdk/README.md)
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/aws-cdk)
 
-## @myin/cli
+## [@myin/cli](./packages/cli/README.md)
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/cli)
 
-## @myin/utils
+## [@myin/utils](./pacakges/utils/README.md)
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/utils)
 
-## @myin/nx-builder
+## [@myin/nx-builder](./packages/nx-builder/README.md)
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/nx-builder)

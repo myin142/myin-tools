@@ -1,5 +1,7 @@
 # nx-builder
 
+Builders for Nx workspaces
+
 ## Install
 
 `npm install --save-dev @myin/nx-builder`

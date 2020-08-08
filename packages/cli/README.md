@@ -1,5 +1,7 @@
 # cli
 
+Custom cli tools with useful commands for CI and other uses
+
 ## Install
 
 `npm install --save-dev @myin/cli`
