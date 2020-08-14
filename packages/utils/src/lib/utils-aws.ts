@@ -1,4 +1,4 @@
-import { AttributeMap, AttributeValue } from 'aws-sdk/clients/dynamodb';
+import { AttributeMap, AttributeValue, QueryInput, ExpressionAttributeValueMap } from 'aws-sdk/clients/dynamodb';
 
 class AWSAttributeMapAdapter {
     static toAttributeValue(value: any): AttributeValue {
@@ -60,3 +60,19 @@ export const fromAWSAttributeMap = <T>(attributeMap: AttributeMap): T => {
 
     return result as T;
 };
+
+export const toSimpleAWSKeyConditionExpressions = (values: object): Partial<QueryInput> => {
+    const colonValues = {};
+    Object.keys(values).forEach((k) => {
+        const keyColon = !k.startsWith(':') ? `:${k}` : k;
+        colonValues[keyColon] = values[k];
+    });
+
+    const expressionValues: ExpressionAttributeValueMap = toAWSAttributeMap(colonValues);
+    const condition = Object.keys(values).map(k => `${k} = :${k}`).join(', ');
+
+    return {
+        KeyConditionExpression: condition,
+        ExpressionAttributeValues: expressionValues,
+    };
+}

@@ -1,4 +1,4 @@
-import { toAWSAttributeMap } from './utils-aws';
+import { toAWSAttributeMap, toSimpleAWSKeyConditionExpressions } from './utils-aws';
 import { fromAWSAttributeMap } from './utils-aws';
 
 describe('Utils AWS', () => {
@@ -76,6 +76,20 @@ describe('Utils AWS', () => {
                 texts: [1, 2],
             });
         });
+    });
+
+    describe('To AWS Key Condition Expressions', () => {
+
+        it('simple', () => {
+            expect(toSimpleAWSKeyConditionExpressions({ key1: 'Value1', key2: 'Value2' })).toEqual({
+                KeyConditionExpression: 'key1 = :key1, key2 = :key2',
+                ExpressionAttributeValues: {
+                    ':key1': { S: 'Value1' },
+                    ':key2': { S: 'Value2' },
+                },
+            });
+        });
+
     });
 
 });
