@@ -4,13 +4,10 @@
     "license": "MIT",
     "description": "Nx Plugin for AWS CDK",
     "scripts": {
-        "nx": "nx",
-        "start": "nx serve",
-        "build": "nx run-many --target=build --all",
-        "publish": "nx run-many --target=publish --all",
-        "test": "nx run-many --target=test --all",
-        "lint": "nx run-many --target=lint --all",
-        "e2e": "nx run-many --target=e2e --all",
+        "publish": "nx affected --target=publish",
+        "test": "nx affected:test",
+        "lint": "nx affected:lint",
+        "e2e": "nx affected:e2e",
         "cli:build": "nx build cli --with-deps && npm i --prefix dist/packages/cli",
         "cli:publish": "node dist/packages/cli publishPackage"
     },

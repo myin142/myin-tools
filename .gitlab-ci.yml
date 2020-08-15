@@ -1,33 +1,13 @@
-image: node
-
-cache:
-    paths:
-        - node_modules/
-
-workflow:
-    rules:
-        - if: $CI_EXTERNAL_PULL_REQUEST_IID
-        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-
-before_script:
-    - npm i
+include:
+    remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test.yml'
 
 stages:
     - test
     - publish
 
-test:
-    stage: test
-    script:
-        - npm run test
-
-lint:
-    stage: test
-    script:
-        - npm run lint
-
 publish:
     stage: publish
+    extends: .prepare_nx_affected
     script:
         - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         - npm run publish
