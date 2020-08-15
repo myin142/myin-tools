@@ -1,6 +1,27 @@
 include:
-    remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test-deploy.yml'
+    remote: 'https://github.com/myin142/gitlab-templates/raw/master/default-merge-js.yml'
 
-before_script:
-    - printenv
-    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+stages:
+    - test
+    - deploy
+
+test:
+    stage: test
+    extends: .prepare_nx_affected
+    script:
+        - npm test -- $NX_BASE_ARGS
+
+lint:
+    stage: test
+    extends: .prepare_nx_affected
+    script:
+        - npm run lint -- $NX_BASE_ARGS
+
+deploy:
+    stage: deploy
+    extends: .prepare_nx_affected
+    script:
+        - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        - npm run publish -- $NX_BASE_ARGS
+    rules:
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
