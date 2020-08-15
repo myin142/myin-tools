@@ -2,4 +2,5 @@ include:
     remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test-deploy.yml'
 
 before_script:
+    - printenv
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
