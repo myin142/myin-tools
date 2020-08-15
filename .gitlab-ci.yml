@@ -1,16 +1,5 @@
 include:
-    remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test.yml'
-    remote: "https://github.com/myin142/gitlab-templates/raw/master/nx-base-args.yml"
+    remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test-deploy.yml'
 
-stages:
-    - test
-    - publish
-
-publish:
-    stage: publish
-    extends: .prepare_nx_affected
-    script:
-        - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
-        - npm run publish
-    rules:
-        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+before_script:
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
