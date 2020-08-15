@@ -8,6 +8,7 @@ export function generateAlphanumeric(length: number): string {
     return result;
 }
 
+
 export function generateUniqueAlphanumeric(length: number, values: string[]): string {
     let id = generateAlphanumeric(length);
     while (values.includes(id)) {
