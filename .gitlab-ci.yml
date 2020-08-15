@@ -1,5 +1,6 @@
 include:
     remote: 'https://github.com/myin142/gitlab-templates/raw/master/basic-nx-test.yml'
+    remote: "https://github.com/myin142/gitlab-templates/raw/master/nx-base-args.yml"
 
 stages:
     - test
