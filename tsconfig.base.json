@@ -21,7 +21,8 @@
             "@myin/cdk-shared": ["packages/cdk-shared/src/index.ts"],
             "@myin/cli": ["packages/cli/src/index.ts"],
             "@myin/nx-builder": ["packages/nx-builder/src/index.ts"],
-            "@myin/utils": ["packages/utils/src/index.ts"]
+            "@myin/utils": ["packages/utils/src/index.ts"],
+            "@myin/test": ["packages/test/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
