@@ -20,7 +20,7 @@ export class PublishPackage implements CliCommand<PublishPackageArgv> {
 		});
 	}
 
-	async handler({ directory, firstPublish }: Partial<Arguments<PublishPackageArgv>>) {
+	async handler({ directory }: Partial<Arguments<PublishPackageArgv>>) {
 		if (!(await this.fs.pathExists(directory))) {
 			console.log('Directory does not exist');
 			return;
@@ -30,24 +30,6 @@ export class PublishPackage implements CliCommand<PublishPackageArgv> {
 		console.log(`Publish version ${version} of package ${name}`);
 
 		return new Promise((resolve, reject) => {
-
-			if (firstPublish) {
-				console.log(`Publish package first time in ${firstPublish} mode`);
-
-				this.npm.commands.publish([directory, '--access', firstPublish], (err, result) => {
-					if (err) {
-						console.log(`Failed to publish first version of package in ${firstPublish} mode`);
-						reject();
-						return;
-					}
-
-					console.log(`Published first version of package in ${firstPublish} mode`);
-					resolve();
-				});
-
-				return;
-			}
-
 			this.npm.load({ prefix: directory }, () => {
 				this.npm.commands.view([name, 'version'], (err, publish) => {
 					if (err) {
@@ -80,5 +62,4 @@ export class PublishPackage implements CliCommand<PublishPackageArgv> {
 
 export interface PublishPackageArgv {
 	directory: string;
-	firstPublish?: string;
 }

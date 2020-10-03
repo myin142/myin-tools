@@ -21,7 +21,7 @@ export function npmPublishBuilder(
 	context: BuilderContext
 ): Observable<BuilderOutput> {
 	return buildTarget(context, options.target).pipe(
-		switchMap(() => from(new PublishPackage().handler({ directory: options.directory, firstPublish: options.firstPublish }))),
+		switchMap(() => from(new PublishPackage().handler({ directory: options.directory }))),
 		map(() => ({ success: true }))
 	);
 }

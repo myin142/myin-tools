@@ -12,10 +12,6 @@
         "target": {
             "type": "string",
             "description": "target project to build before publishing"
-        },
-        "firstPublish": {
-            "type": "string",
-            "description": "mode to first publish (public/restricted). Should not be used automatically"
         }
     },
     "required": []

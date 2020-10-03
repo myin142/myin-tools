@@ -4,5 +4,4 @@ import { JsonObject } from '@angular-devkit/core';
 export interface NpmPublishBuilderSchema extends JsonObject {
 	target: string;
 	directory: string;
-	firstPublish?: string;
 }
