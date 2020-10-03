@@ -18,34 +18,34 @@ describe('Publish Package', () => {
 		fs.pathExists.mockResolvedValue(true as never);
 	});
 
-	// it('publish package if version is different', async () => {
-	//     fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
-	//     npm.commands.view.mockImplementationOnce(((x, cb) =>
-	//         cb(null, { '0': { version: '0' } })) as typeof npmModule.commands.view);
+	it('publish package if version is different', async () => {
+		fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
+		npm.commands.view.mockImplementationOnce(((x, cb) =>
+			cb(null, { '0': { version: '0' } })) as typeof npmModule.commands.view);
 
-	//     await publishPackage.handler({ directory: 'package/folder' });
+		await publishPackage.handler({ directory: 'package/folder' });
 
-	//     expect(npm.commands.publish).toHaveBeenCalledWith(['package/folder'], expect.anything());
-	// });
+		expect(npm.commands.publish).toHaveBeenCalledWith(['package/folder'], expect.anything());
+	});
 
-	// it('not publish if directory not exist', async () => {
-	//     fs.pathExists.mockResolvedValueOnce(false as never);
-	//     fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
-	//     npm.commands.view.mockImplementationOnce(((x, cb) =>
-	//         cb(null, { '0': { version: '0' } })) as typeof npmModule.commands.view);
+	it('not publish if directory not exist', async () => {
+		fs.pathExists.mockResolvedValueOnce(false as never);
+		fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
+		npm.commands.view.mockImplementationOnce(((x, cb) =>
+			cb(null, { '0': { version: '0' } })) as typeof npmModule.commands.view);
 
-	//     await publishPackage.handler({ directory: 'package/folder' });
+		await publishPackage.handler({ directory: 'package/folder' });
 
-	//     expect(npm.commands.publish).not.toHaveBeenCalled();
-	// });
+		expect(npm.commands.publish).not.toHaveBeenCalled();
+	});
 
-	// it('not publish if same version', async () => {
-	//     fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
-	//     npm.commands.view.mockImplementationOnce(((x, cb) =>
-	//         cb(null, { '1': { version: '1' } })) as typeof npmModule.commands.view);
+	it('not publish if same version', async () => {
+		fs.readJson.mockResolvedValueOnce({ name: '@test/package', version: '1' } as never);
+		npm.commands.view.mockImplementationOnce(((x, cb) =>
+			cb(null, { '1': { version: '1' } })) as typeof npmModule.commands.view);
 
-	//     await publishPackage.handler({ directory: 'package/folder' });
+		await publishPackage.handler({ directory: 'package/folder' });
 
-	//     expect(npm.commands.publish).not.toHaveBeenCalled();
-	// });
+		expect(npm.commands.publish).not.toHaveBeenCalled();
+	});
 });
