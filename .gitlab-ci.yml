@@ -22,6 +22,7 @@ deploy:
     extends: .prepare_nx_affected
     script:
         - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        - npm run build -- $NX_BASE_ARGS
         - npm run publish -- $NX_BASE_ARGS
     rules:
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

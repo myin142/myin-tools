@@ -5,6 +5,8 @@
     "description": "Nx Plugin for AWS CDK",
     "scripts": {
         "publish": "nx affected --target=publish",
+        "build": "nx affected:build --with-deps",
+        "postbuild": "if [[ -d dist/packages/cli ]]; then npm i --prefix dist/packages/cli; fi",
         "test": "nx affected:test",
         "lint": "nx affected:lint",
         "e2e": "nx affected:e2e",

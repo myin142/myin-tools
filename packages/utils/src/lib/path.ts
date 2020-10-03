@@ -11,6 +11,7 @@ export class Path {
 				joined += '/';
 			}
 		}
+
 		return joined;
 	}
 
