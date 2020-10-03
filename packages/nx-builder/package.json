@@ -1,6 +1,6 @@
 {
     "name": "@myin/nx-builder",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "src/index.js",
     "schematics": "./collection.json",
     "builders": "./builders.json",
@@ -8,6 +8,6 @@
         "@nrwl/workspace": "*"
     },
     "dependencies": {
-        "@myin/cli": "^0.0.8"
+        "@myin/cli": "^0.0.9"
     }
 }
