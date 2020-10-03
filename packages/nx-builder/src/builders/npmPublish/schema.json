@@ -15,7 +15,7 @@
         },
         "firstPublish": {
             "type": "string",
-            "description": "mode to first publish (public/private). Should not be used automatically"
+            "description": "mode to first publish (public/restricted). Should not be used automatically"
         }
     },
     "required": []
