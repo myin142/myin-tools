@@ -1,7 +1,11 @@
 {
     "name": "@myin/aws-utils",
-    "version": "0.0.2",
+    "version": "0.0.5",
     "main": "src/index.js",
     "schematics": "./collection.json",
-    "builders": "./builders.json"
+    "builders": "./builders.json",
+    "dependencies": {
+        "tslib": "^2.0.0",
+        "jsonwebtoken": "^8.5.1"
+    }
 }
