@@ -38,6 +38,16 @@
         },
         "utils": {
             "tags": []
+        },
+        "aws-utils": {
+            "tags": []
+        },
+        "aws-utils-e2e": {
+            "tags": [],
+            "implicitDependencies": ["aws-utils"]
+        },
+        "shared-tests": {
+            "tags": []
         }
     },
     "workspaceLayout": {

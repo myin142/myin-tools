@@ -244,6 +244,110 @@
                     }
                 }
             }
+        },
+        "aws-utils": {
+            "root": "packages/aws-utils",
+            "sourceRoot": "packages/aws-utils/src",
+            "projectType": "library",
+            "schematics": {},
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:lint",
+                    "options": {
+                        "linter": "eslint",
+                        "tsConfig": [
+                            "packages/aws-utils/tsconfig.lib.json",
+                            "packages/aws-utils/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!packages/aws-utils/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "packages/aws-utils/jest.config.js",
+                        "tsConfig": "packages/aws-utils/tsconfig.spec.json",
+                        "passWithNoTests": true
+                    }
+                },
+                "build": {
+                    "builder": "@nrwl/node:package",
+                    "options": {
+                        "outputPath": "dist/packages/aws-utils",
+                        "tsConfig": "packages/aws-utils/tsconfig.lib.json",
+                        "packageJson": "packages/aws-utils/package.json",
+                        "main": "packages/aws-utils/src/index.ts",
+                        "assets": [
+                            "packages/aws-utils/*.md",
+                            {
+                                "input": "./packages/aws-utils/src",
+                                "glob": "**/*.!(ts)",
+                                "output": "./src"
+                            },
+                            {
+                                "input": "./packages/aws-utils",
+                                "glob": "collection.json",
+                                "output": "."
+                            },
+                            {
+                                "input": "./packages/aws-utils",
+                                "glob": "builders.json",
+                                "output": "."
+                            }
+                        ]
+                    }
+                },
+                "publish": {
+                    "builder": "@myin/nx-builder:npmPublish",
+                    "options": {
+                        "target": "aws-utils:build",
+                        "directory": "dist/packages/aws-utils"
+                    }
+                }
+            }
+        },
+        "aws-utils-e2e": {
+            "projectType": "application",
+            "root": "e2e/aws-utils-e2e",
+            "sourceRoot": "e2e/aws-utils-e2e/src",
+            "architect": {
+                "e2e": {
+                    "builder": "@nrwl/nx-plugin:e2e",
+                    "options": {
+                        "target": "aws-utils:build",
+                        "npmPackageName": "@myin/aws-utils",
+                        "pluginOutputPath": "dist/packages/aws-utils",
+                        "jestConfig": "e2e/aws-utils-e2e/jest.config.js"
+                    }
+                }
+            }
+        },
+        "shared-tests": {
+            "root": "packages/shared/tests",
+            "sourceRoot": "packages/shared/tests/src",
+            "projectType": "library",
+            "schematics": {},
+            "architect": {
+                "lint": {
+                    "builder": "@nrwl/linter:lint",
+                    "options": {
+                        "linter": "eslint",
+                        "tsConfig": [
+                            "packages/shared/tests/tsconfig.lib.json",
+                            "packages/shared/tests/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!packages/shared/tests/**/*"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "packages/shared/tests/jest.config.js",
+                        "tsConfig": "packages/shared/tests/tsconfig.spec.json",
+                        "passWithNoTests": true
+                    }
+                }
+            }
         }
     },
     "cli": {

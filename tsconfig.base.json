@@ -22,7 +22,9 @@
             "@myin/cli": ["packages/cli/src/index.ts"],
             "@myin/nx-builder": ["packages/nx-builder/src/index.ts"],
             "@myin/utils": ["packages/utils/src/index.ts"],
-            "@myin/test": ["packages/test/src/index.ts"]
+            "@myin/test": ["packages/test/src/index.ts"],
+            "@myin/aws-utils": ["packages/aws-utils/src/index.ts"],
+            "@myin/shared/tests": ["packages/shared/tests/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]
