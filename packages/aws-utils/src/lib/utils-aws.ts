@@ -38,10 +38,18 @@ class AWSAttributeMapAdapter {
 	}
 
 	private static parseOptionalObject(s: string): any {
-		if (s.startsWith('{') && s.endsWith('}')) {
+		if (this.enclosedByCurlyBrackets(s) || this.enclosedBySquareBrackets(s)) {
 			return JSON.parse(s);
 		}
 		return s;
+	}
+
+	private static enclosedBySquareBrackets(s: string): boolean {
+		return s.startsWith('[') && s.endsWith(']')
+	}
+
+	private static enclosedByCurlyBrackets(s: string): boolean {
+		return s.startsWith('{') && s.endsWith('}')
 	}
 }
 

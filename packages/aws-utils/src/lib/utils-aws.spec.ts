@@ -75,6 +75,12 @@ describe('Utils AWS', () => {
 			});
 		});
 
+		it('map array string', () => {
+			expect(fromAWSAttributeMap({ text: { S: `[1, 2]` } })).toEqual({
+				text: [1, 2],
+			});
+		});
+
 		it('map number', () => {
 			expect(fromAWSAttributeMap({ num: { N: '1' } })).toEqual({
 				num: 1,
@@ -96,6 +102,12 @@ describe('Utils AWS', () => {
 		it('map object string array', () => {
 			expect(fromAWSAttributeMap({ arr: { SS: [`{"value": 1}`, '{}'] } })).toEqual({
 				arr: [{ value: 1 }, {}],
+			});
+		});
+
+		it('map array string array', () => {
+			expect(fromAWSAttributeMap({ arr: { SS: [`[1]`, `[2]`] } })).toEqual({
+				arr: [[1], [2]],
 			});
 		});
 	});
