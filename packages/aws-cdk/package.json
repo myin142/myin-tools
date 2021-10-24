@@ -1,6 +1,6 @@
 {
     "name": "@myin/aws-cdk",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "main": "src/index.js",
     "schematics": "./collection.json",
     "builders": "./builders.json",
@@ -14,5 +14,9 @@
         "@angular-devkit/architect": "^0.1000.5",
         "npm": "^6.14.7",
         "aws-cdk": "^1.54.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/myin142/myin-tools.git"
     }
 }
