@@ -1,5 +1,29 @@
-include:
-    remote: 'https://github.com/myin142/gitlab-templates/raw/master/default-merge-js.yml'
+image: node
+
+.setup_nx_args: &setup_nx_args
+  - >
+    if [ -z $CI_EXTERNAL_PULL_REQUEST_IID ]; then
+      NX_BASE_ARGS="--base $CI_COMMIT_BEFORE_SHA --head $CI_COMMIT_SHA"
+    else
+      NX_BASE_ARGS="--base $CI_EXTERNAL_PULL_REQUEST_TARGET_BRANCH_SHA --head $CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_SHA"
+    fi
+
+# have to combine with "npm i" here since anchores do not work across includes
+.prepare_nx_affected:
+  before_script:
+    - npm i
+    - *setup_nx_args
+
+
+cache:
+  paths:
+    - node_modules/
+
+workflow:
+  rules:
+    - if: $CI_EXTERNAL_PULL_REQUEST_IID
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 
 stages:
     - test

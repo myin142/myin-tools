@@ -1,57 +1,97 @@
 {
-    "npmScope": "myin",
-    "implicitDependencies": {
-        "workspace.json": "*",
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        "tsconfig.base.json": "*",
-        "tslint.json": "*",
-        "nx.json": "*"
+  "npmScope": "myin",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
     },
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/workspace/tasks-runners/default",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"]
-            }
-        }
-    },
-    "projects": {
-        "nx-builder": {
-            "tags": []
-        },
-        "aws-cdk": {
-            "tags": []
-        },
-        "aws-cdk-e2e": {
-            "tags": [],
-            "implicitDependencies": ["aws-cdk"]
-        },
-        "cli": {
-            "tags": []
-        },
-        "cli-e2e": {
-            "tags": [],
-            "implicitDependencies": ["cli"]
-        },
-        "utils": {
-            "tags": []
-        },
-        "aws-utils": {
-            "tags": []
-        },
-        "aws-utils-e2e": {
-            "tags": [],
-            "implicitDependencies": ["aws-utils"]
-        },
-        "shared-tests": {
-            "tags": []
-        }
-    },
-    "workspaceLayout": {
-        "appsDir": "e2e",
-        "libsDir": "packages"
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*",
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "parallel": 1
+      }
     }
+  },
+  "workspaceLayout": {
+    "appsDir": "e2e",
+    "libsDir": "packages"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nx-plugin"
+  },
+  "generators": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nx-plugin": {
+      "plugin": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
 }

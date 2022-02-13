@@ -1,26 +1,25 @@
 {
-    "$schema": "https://json-schema.org/draft-07/schema",
-    "$id": "https://json-schema.org/draft-07/schema",
-    "title": "Build builder",
-    "description": "",
-    "type": "object",
-    "properties": {
-        "tsConfig": {
-            "type": "string",
-            "description": "The path to tsconfig file."
-        },
-        "packageJson": {
-            "type": "string",
-            "description": "The path to package.json file."
-        },
-        "outputPath": {
-            "type": "string",
-            "description": "Output path"
-        },
-        "entryFile": {
-            "type": "string",
-            "description": "The path to the entry file, relative to project."
-        }
+  "$schema": "http://json-schema.org/schema",
+  "title": "Build builder",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "tsConfig": {
+      "type": "string",
+      "description": "The path to tsconfig file."
     },
-    "required": []
+    "packageJson": {
+      "type": "string",
+      "description": "The path to package.json file."
+    },
+    "outputPath": {
+      "type": "string",
+      "description": "Output path"
+    },
+    "entryFile": {
+      "type": "string",
+      "description": "The path to the entry file, relative to project."
+    }
+  },
+  "required": []
 }
