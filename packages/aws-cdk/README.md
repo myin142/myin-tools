@@ -2,6 +2,8 @@
 
 Working with AWS CDK in Nx workspaces
 
+Use version `>= 0.0.11` for nx workspace v13 or higher
+
 ## Install
 
 `npm install --save-dev @myin/aws-cdk`
