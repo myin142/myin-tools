@@ -81,10 +81,7 @@
           "builder": "@nrwl/nx-plugin:e2e",
           "options": {
             "target": "aws-cdk:build",
-            "npmPackageName": "@myin/aws-cdk",
-            "pluginOutputPath": "dist/packages/aws-cdk",
-            "jestConfig": "e2e/aws-cdk-e2e/jest.config.js",
-            "tsSpecConfig": "e2e/aws-cdk-e2e/tsconfig.spec.json"
+            "jestConfig": "e2e/aws-cdk-e2e/jest.config.js"
           }
         }
       },

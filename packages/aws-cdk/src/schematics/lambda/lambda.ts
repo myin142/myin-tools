@@ -11,16 +11,14 @@ import {
     forEach,
 } from '@angular-devkit/schematics';
 import {
-    names,
-    offsetFromRoot,
     projectRootDir,
     ProjectType,
-    toFileName,
     addDepsToPackageJson,
     updateWorkspaceInTree,
 } from '@nrwl/workspace';
 import { LambdaSchema } from './schema';
 import { CDK_VERSION } from '../../utils/cdk-shared';
+import { names, offsetFromRoot } from '@nrwl/devkit';
 
 /**
  * Depending on your needs, you can change this to either `Library` or `Application`
@@ -35,9 +33,9 @@ interface NormalizedSchema extends LambdaSchema {
 }
 
 function normalizeOptions(options: LambdaSchema): NormalizedSchema {
-    const name = toFileName(options.name);
+    const name = names(options.name).fileName;
     const projectDirectory = options.directory
-        ? `${toFileName(options.directory)}/${name}`
+        ? `${names(options.directory).fileName}/${name}`
         : name;
     const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
     const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`;

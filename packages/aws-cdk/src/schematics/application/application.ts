@@ -9,14 +9,11 @@ import {
   externalSchematic,
 } from '@angular-devkit/schematics';
 import {
-  addProjectToNxJsonInTree,
-  names,
-  offsetFromRoot,
   projectRootDir,
   ProjectType,
-  toFileName,
   updateWorkspace,
 } from '@nrwl/workspace';
+import { names, offsetFromRoot } from '@nrwl/devkit';
 import { ApplicationSchema } from './schema';
 import init from '../init/init';
 
@@ -33,9 +30,9 @@ interface NormalizedSchema extends ApplicationSchema {
 }
 
 function normalizeOptions(options: ApplicationSchema): NormalizedSchema {
-  const name = toFileName(options.name);
+  const name = names(options.name).fileName;
   const projectDirectory = options.directory
-    ? `${toFileName(options.directory)}/${name}`
+    ? `${names(options.directory).fileName}/${name}`
     : name;
   const projectName = projectDirectory.replace(new RegExp('/', 'g'), '-');
   const projectRoot = `${projectRootDir(projectType)}/${projectDirectory}`;
@@ -105,9 +102,6 @@ export default function (options: ApplicationSchema): Rule {
           commands: [{ command: optionalArgCmd('cdk destroy -f', 'stack') }],
         },
       });
-    }),
-    addProjectToNxJsonInTree(normalizedOptions.projectName, {
-      tags: normalizedOptions.parsedTags,
     }),
     addFiles(normalizedOptions),
     externalSchematic('@nrwl/jest', 'jest-project', {

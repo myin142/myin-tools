@@ -14,6 +14,7 @@
     "cli:publish": "node dist/packages/cli publishPackage"
   },
   "dependencies": {
+    "@angular-devkit/architect": "^0.1302.3",
     "@aws-cdk/core": "^1.54.0",
     "aws-cdk": "^1.54.0",
     "aws-sdk": "^2.733.0",
