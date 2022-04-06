@@ -9,7 +9,7 @@ Builders for Nx workspaces
 ## Builders
 
 -   `@myin/nx-builder:npmPublish`: published npm package if version has changed
-    -   Example (in workpsace.json)
+    -   Example (in workspace.json)
     ```
     "builder": "@myin/nx-builder:npmPublish",
     "options": {
