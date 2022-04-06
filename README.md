@@ -11,7 +11,7 @@
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/cli)
 
-## [@myin/utils](./pacakges/utils/README.md)
+## [@myin/utils](./packages/utils/README.md)
 
 ![npm (scoped)](https://img.shields.io/npm/v/@myin/utils)
 
