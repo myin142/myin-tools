@@ -78,7 +78,7 @@ export function packageBuilder(
         context.workspaceRoot,
         context.target.project,
         context.target.target,
-        context.target.configuration,
+        context.target.configuration
     );
 
     return of(
@@ -112,4 +112,4 @@ export function packageBuilder(
     );
 }
 
-export default createBuilder(packageBuilder);
+export default createBuilder(packageBuilder) as any;
