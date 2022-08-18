@@ -2,7 +2,8 @@
 
 Working with AWS CDK in Nx workspaces
 
-Use version `>= 0.0.11` for nx workspace v13 or higher
+Use version `>= 0.0.11` for nx >= v13
+USe version `>= 1.0.0` for nx >= v14
 
 ## Install
 
