@@ -1,6 +1,6 @@
 {
     "name": "@myin/aws-cdk",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "src/index.js",
     "schematics": "./collection.json",
     "builders": "./builders.json",
@@ -11,7 +11,6 @@
         "@nrwl/workspace": "^14.5.7",
         "@angular-devkit/architect": "^0.1000.5",
         "@angular-devkit/schematics": "^12.2.11",
-        "@angular-devkit/core": "^13.2.3",
         "npm": "^6.14.7",
         "aws-cdk": "^1.54.0"
     },
